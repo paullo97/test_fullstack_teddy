@@ -1,0 +1,29 @@
+  .menu-button {
+    margin-right: 16px;
+  }
+  
+  .logo-and-links {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 100px;
+    margin-right: 35%;
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .selected-clients {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .greeting {
+    font-size: 1rem;
+  }
