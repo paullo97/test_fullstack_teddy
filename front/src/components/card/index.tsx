@@ -12,13 +12,15 @@ import { red } from "@mui/material/colors";
 interface CardClientProps {
     name: string;
     salary: string,
-    enterprise: string
+    enterprise: string;
+    exclude: (name: string) => void;
 }
 
 const CardClient: React.FC<CardClientProps> = ({
     name, 
     salary, 
-    enterprise
+    enterprise,
+    exclude
 }) => {
   return (
     <Box sx={{ minWidth: 275, maxWidth: 275 }}>
@@ -60,7 +62,7 @@ const CardClient: React.FC<CardClientProps> = ({
           <IconButton aria-label="delete">
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={() => exclude(name)}>
             <DeleteIcon sx={{ color: red[500] }} />
           </IconButton>
         </CardActions>
