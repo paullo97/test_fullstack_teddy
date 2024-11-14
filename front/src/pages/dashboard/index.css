@@ -1,39 +1,23 @@
-.app-bar {
-    background-color: white;
-    color: rgb(255, 0, 0);
-  }
-  
-  .menu-button {
-    margin-right: 16px;
-  }
-  
-  .logo-and-links {
+.conatiner-dashboard {
+    background-color: #f5f5f5;
     display: flex;
-    flex-grow: 1;
+    flex-direction: column;
     align-items: center;
-  }
-  
-  .logo {
-    width: 100px;
-    margin-right: 35%;
-  }
-  
-  .nav-links {
+    height: 89vh;
+    padding-top: 2%;
+    overflow-x: hidden;
+}
+
+.content { 
+    width: 90vw; 
+}
+
+.contant > Button {
+    background-color: orange;
+}
+
+.found-count {
     display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  .clientes-link {
-    color: #ff5a00 !important;
-    text-decoration: underline;
-  }
-  
-  .selected-clients {
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .greeting {
-    font-size: 1rem;
-  }
+    flex-direction: row;
+    justify-content: space-between;
+}
