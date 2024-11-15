@@ -4,6 +4,8 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/routes";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const theme = createTheme({
   palette: {
@@ -16,7 +18,9 @@ const theme = createTheme({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </ThemeProvider>
   </StrictMode>
 );
