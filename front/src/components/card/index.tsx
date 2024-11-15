@@ -40,7 +40,7 @@ const CardClient: React.FC<CardClientProps> = ({
             component="div"
             style={{ fontWeight: "bold", marginBottom: "10px" }}
           >
-            {client.nome}
+            {client.name}
           </Typography>
 
           <Typography variant="h6" component="div">

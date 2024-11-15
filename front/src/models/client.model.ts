@@ -1,6 +1,6 @@
 export interface Cliente {
     id?: string;
-    nome: string;
+    name: string;
     salary: string;
     enterpriseValue: string;
     selected: boolean;

@@ -56,7 +56,7 @@ const ModalFormClient: React.FC<IModalProps> = ({
       ...(data.id && {
         id: data.id,
       }),
-      nome: data.name,
+      name: data.name,
       enterpriseValue: data.enterpriseValue,
       salary: data.salary,
       user: nameUser,
@@ -97,7 +97,7 @@ const ModalFormClient: React.FC<IModalProps> = ({
           setValues({
             id: cliente.id!,
             enterpriseValue: cliente.enterpriseValue,
-            name: cliente.nome,
+            name: cliente.name,
             salary: cliente.salary
           })
         }
