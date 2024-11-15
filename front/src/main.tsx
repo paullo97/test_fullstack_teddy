@@ -6,6 +6,7 @@ import { router } from "./routes/routes";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import store from "./store";
+import { SnackbarProvider } from "./components/snackBar";
 
 const theme = createTheme({
   palette: {
@@ -19,7 +20,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <SnackbarProvider>
+          <RouterProvider router={router} />
+        </SnackbarProvider>
       </Provider>
     </ThemeProvider>
   </StrictMode>
