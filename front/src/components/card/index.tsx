@@ -8,20 +8,23 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { red } from "@mui/material/colors";
+import { Cliente } from "../../store/slices/clienteSlice";
+import RemoveIcon from '@mui/icons-material/Remove';
 
 interface CardClientProps {
-    name: string;
-    salary: string,
-    enterprise: string;
-    exclude: (name: string) => void;
+    client: Cliente;
+    exclude: (id: string) => void;
+    edit: (idClient: string) => void;
+    handleSelected: (id: string) => void;
 }
 
 const CardClient: React.FC<CardClientProps> = ({
-    name, 
-    salary, 
-    enterprise,
-    exclude
+    client,
+    exclude,
+    edit,
+    handleSelected
 }) => {
+
   return (
     <Box sx={{ minWidth: 275, maxWidth: 275 }}>
       <Card variant="outlined">
@@ -37,15 +40,15 @@ const CardClient: React.FC<CardClientProps> = ({
             component="div"
             style={{ fontWeight: "bold", marginBottom: "10px" }}
           >
-            {name}
+            {client.nome}
           </Typography>
 
           <Typography variant="h6" component="div">
-            Salário: R${salary} 
+            Salário: R${client.salary} 
           </Typography>
 
           <Typography variant="h6" component="div">
-            Empresa: R${enterprise}
+            Empresa: R${client.enterpriseValue}
           </Typography>
         </CardContent>
 
@@ -56,13 +59,13 @@ const CardClient: React.FC<CardClientProps> = ({
             justifyContent: "space-between",
           }}
         >
-          <IconButton aria-label="delete">
-            <AddIcon />
+          <IconButton onClick={() => handleSelected(client.id!)}>
+            {client.selected ? (<RemoveIcon />) : (<AddIcon />)}
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton onClick={() => edit(client.id!)}>
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete" onClick={() => exclude(name)}>
+          <IconButton onClick={() => exclude(client.id!)}>
             <DeleteIcon sx={{ color: red[500] }} />
           </IconButton>
         </CardActions>
