@@ -3,6 +3,7 @@ import App from "../App";
 import Dashboard from "../pages/dashboard";
 import DefaultLayout from "../pages/defaultLayout";
 import SelectedClients from "../pages/selectedClients";
+import NotFound from "../pages/notFound";
 
 export const router = createBrowserRouter([
     {
@@ -23,4 +24,8 @@ export const router = createBrowserRouter([
         }
       ],
     },
+    {
+      path: '*',
+      element: <NotFound />
+    }
   ]);
