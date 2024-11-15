@@ -47,10 +47,14 @@ const AppBarComponent = () => {
             />
 
             <Box className="nav-links" >
-              <Typography variant="body1" color="secondary" style={{ textDecoration: 'underline' }}>
+              <Typography variant="body1" color="secondary" style={{ textDecoration: 'underline' }} onClick={() => {
+                navigate('/dashboard')
+              }}>
                 Clientes
               </Typography>
-              <Typography variant="body1" className="selected-clients">
+              <Typography variant="body1" className="selected-clients" onClick={() => {
+                navigate('/dashboard/selecteds')
+              }}>
                 Clientes selecionados
               </Typography>
               <Typography variant="body1" className="selected-clients" onClick={logout}>
