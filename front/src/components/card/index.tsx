@@ -13,8 +13,8 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 interface CardClientProps {
     client: Cliente;
-    exclude: (id: string) => void;
-    edit: (idClient: string) => void;
+    exclude?: (id: string) => void;
+    edit?: (idClient: string) => void;
     handleSelected: (id: string) => void;
 }
 
@@ -62,12 +62,16 @@ const CardClient: React.FC<CardClientProps> = ({
           <IconButton onClick={() => handleSelected(client.id!)}>
             {client.selected ? (<RemoveIcon />) : (<AddIcon />)}
           </IconButton>
-          <IconButton onClick={() => edit(client.id!)}>
-            <EditIcon />
-          </IconButton>
-          <IconButton onClick={() => exclude(client.id!)}>
-            <DeleteIcon sx={{ color: red[500] }} />
-          </IconButton>
+          {edit && (
+            <IconButton onClick={() => edit(client.id!)}>
+              <EditIcon />
+            </IconButton>
+          )}
+          { exclude && (
+            <IconButton onClick={() => exclude(client.id!)}>
+              <DeleteIcon sx={{ color: red[500] }} />
+            </IconButton>
+          )}
         </CardActions>
       </Card>
     </Box>
