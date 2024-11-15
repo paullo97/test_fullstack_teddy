@@ -12,12 +12,14 @@ export interface Cliente {
 
 interface ClientesState {
   clientes: Cliente[];
+  selectedClientes: Cliente[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
 
 const initialState: ClientesState = {
   clientes: [],
+  selectedClientes: [],
   status: 'idle',
   error: null,
 };
@@ -77,6 +79,16 @@ export const handleSelectedClient = createAsyncThunk<Cliente, string, { rejectVa
   }
 )
 
+export const resetSelecteds = createAsyncThunk('clientes/resetSelecteds', async (user: string) => {
+  await axios.patch(`${API_URL}/selected/clear/${user}`)
+  return;
+})
+
+export const findAllSelectedClients = createAsyncThunk('clientes/findAllSelectedClients', async (user: string) => {
+  const response = await axios.get<Cliente[]>(`${API_URL}/selected?name=${user}`);
+  return response.data;
+})
+
 const clienteSlice = createSlice({
   name: 'clientes',
   initialState,
@@ -107,6 +119,17 @@ const clienteSlice = createSlice({
         state.clientes = state.clientes.filter((cliente) => cliente.id?.toString() !== action.payload?.toString());
       })
       .addCase(handleSelectedClient.fulfilled, (state, action: PayloadAction<Cliente>) => {
+        state.selectedClientes = state.selectedClientes.map((cliente) => {
+          if(cliente.id?.toString() === action.payload?.id?.toString()) { 
+            return {
+              ...cliente,
+              selected: !cliente.selected
+            }
+          }
+          
+          return cliente
+        });
+        
         state.clientes = state.clientes.map((cliente) => {
           if(cliente.id?.toString() === action.payload?.id?.toString()) { 
             return {
@@ -117,6 +140,12 @@ const clienteSlice = createSlice({
           
           return cliente
         });
+      })
+      .addCase(resetSelecteds.fulfilled, (state) => {
+        state.selectedClientes = []
+      })
+      .addCase(findAllSelectedClients.fulfilled, (state, action: PayloadAction<Cliente[]>) => {
+        state.selectedClientes = action.payload;
       });
   },
 });
