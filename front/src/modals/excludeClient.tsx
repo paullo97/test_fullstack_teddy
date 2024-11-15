@@ -48,7 +48,7 @@ const ModalExcludeClient: React.FC<IModalProps> = ({
 
       <DialogContent>
         <Typography variant="body1" sx={{ marginTop: 1 }}>
-          Você está prestes a excluir o cliente: <strong>{cliente}</strong>
+          Você está prestes a excluir esse cliente
         </Typography>
       </DialogContent>
 
