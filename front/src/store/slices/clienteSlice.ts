@@ -15,6 +15,7 @@ interface ClientesState {
   selectedClientes: Cliente[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
+  total: number;
 }
 
 const initialState: ClientesState = {
@@ -22,13 +23,21 @@ const initialState: ClientesState = {
   selectedClientes: [],
   status: 'idle',
   error: null,
+  total: 0,
 };
 
 const API_URL = 'http://localhost:3000/clientes';
 
-export const fetchClientes = createAsyncThunk('clientes/fetchClientes', async (name: string) => {
-  const response = await axios.get<Cliente[]>(`${API_URL}?name=${name}`);
-  return response.data;
+export const fetchClientes = createAsyncThunk('clientes/fetchClientes', async (
+  { user, page = 1, limit = 10 }: { user: string; page: number; limit: number },
+  { rejectWithValue },
+) => {
+  try {
+    const response = await axios.get(`${API_URL}?name=${user}&page=${page}&limit=${limit}`)
+    return response.data;
+  } catch {
+    return rejectWithValue('Erro ao buscar clientes paginados');
+  }
 });
 
 export const adicionarClienteAPI = createAsyncThunk(
@@ -98,9 +107,10 @@ const clienteSlice = createSlice({
       .addCase(fetchClientes.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchClientes.fulfilled, (state, action: PayloadAction<Cliente[]>) => {
+      .addCase(fetchClientes.fulfilled, (state, action: PayloadAction<{data: Cliente[], total: number}>) => {
         state.status = 'succeeded';
-        state.clientes = action.payload;
+        state.clientes = action.payload.data;
+        state.total = action.payload.total
       })
       .addCase(fetchClientes.rejected, (state, action) => {
         state.status = 'failed';
