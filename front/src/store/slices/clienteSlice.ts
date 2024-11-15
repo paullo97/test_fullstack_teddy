@@ -1,5 +1,3 @@
-// src/store/slices/clienteSlice.ts
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Cliente {
