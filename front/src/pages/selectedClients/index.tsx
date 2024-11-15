@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { useSnackbar } from "../../components/snackBar";
-import { findAllSelectedClients, handleSelectedClient, resetSelecteds } from "../../store/slices/clienteSlice";
 import CardClient from "../../components/card";
 import { useEffect } from "react";
+import { findAllSelectedClients, handleSelectedClient, resetSelecteds } from "../../services/client.service";
 
 const SelectedClients = () => {
   const dispatch = useDispatch<AppDispatch>();

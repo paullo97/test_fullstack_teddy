@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface IName { 
-    name: string;
-}
+import { IName } from '../../models/name.model';
 
 const initialState: IName = {
     name: ''

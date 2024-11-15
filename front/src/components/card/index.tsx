@@ -8,8 +8,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { red } from "@mui/material/colors";
-import { Cliente } from "../../store/slices/clienteSlice";
 import RemoveIcon from '@mui/icons-material/Remove';
+import { Cliente } from "../../models/client.model";
 
 interface CardClientProps {
     client: Cliente;

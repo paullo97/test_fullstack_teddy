@@ -11,17 +11,13 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import {
-  adicionarClienteAPI,
-  atualizarClienteAPI,
-  Cliente,
-  fetchClienteById,
-} from "../store/slices/clienteSlice";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useSnackbar } from "../components/snackBar";
 import { AppDispatch, RootState } from "../store";
 import { useDispatch } from "react-redux";
+import { adicionarClienteAPI, atualizarClienteAPI, fetchClienteById } from "../services/client.service";
+import { Cliente } from "../models/client.model";
 
 interface IModalProps {
   open: boolean;

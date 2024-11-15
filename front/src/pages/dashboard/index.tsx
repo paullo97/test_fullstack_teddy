@@ -7,13 +7,10 @@ import { useEffect, useState } from "react";
 import ModalFormClient from "../../modals/formClient";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import {
-  Cliente,
-  fetchClientes,
-  handleSelectedClient,
-} from "../../store/slices/clienteSlice";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "../../components/snackBar";
+import { fetchClientes, handleSelectedClient } from "../../services/client.service";
+import { Cliente } from "../../models/client.model";
 
 const Dashboard = () => {
   const [modalExclude, setModalExclude] = useState({

@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch } from "react-redux";
-import { removerClienteAPI } from "../store/slices/clienteSlice";
 import { AppDispatch } from "../store";
 import { useSnackbar } from "../components/snackBar";
+import { removerClienteAPI } from "../services/client.service";
 
 interface IModalProps {
   open: boolean;
