@@ -3,13 +3,23 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SideBar from "../sidebar";
 import './index.css';
+import { useSelector } from "react-redux";
+import { RootState } from '../../store';
+import { useNavigate } from "react-router-dom";
 
 const AppBarComponent = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const nameUser = useSelector((state: RootState) => state.name.name )
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
+  const logout = () => {
+    navigate('/', { replace: true })
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -43,14 +53,14 @@ const AppBarComponent = () => {
               <Typography variant="body1" className="selected-clients">
                 Clientes selecionados
               </Typography>
-              <Typography variant="body1" className="selected-clients">
+              <Typography variant="body1" className="selected-clients" onClick={logout}>
                 Sair
               </Typography>
             </Box>
           </Box>
 
           <Typography variant="body1" className="greeting">
-            Olá, <strong>Usuário</strong>!
+            Olá, <strong>{nameUser}</strong>!
           </Typography>
         </Toolbar>
       </AppBar>
