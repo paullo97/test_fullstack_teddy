@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 
 import './index.css';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -27,6 +28,10 @@ const SideBar: React.FC<SideBarProps> = ({ open, setOpen }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActiveRoute = (path: string) => location.pathname === path;
 
   return (
     <Drawer
@@ -63,25 +68,37 @@ const SideBar: React.FC<SideBarProps> = ({ open, setOpen }) => {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => {
+            navigate('/dashboard')
+          }}>
             <ListItemIcon>
-              <HomeIcon />
+              <HomeIcon  sx={{
+              color: isActiveRoute('/dashboard') ? '#EC6724' : 'inherit'
+            }}/>
             </ListItemIcon>
-            <ListItemText primary={"Home"} />
+            <ListItemText primary={"Home"} sx={{
+              color: isActiveRoute('/dashboard') ? '#EC6724' : 'inherit'
+            }}/>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => {
+            navigate('/dashboard/selecteds')
+          }}>
             <ListItemIcon>
-              <PersonIcon />
+              <PersonIcon sx={{
+              color: isActiveRoute('/dashboard/selecteds') ? '#EC6724' : 'inherit'
+            }}/>
             </ListItemIcon>
-            <ListItemText primary={"Clientes"} />
+            <ListItemText primary={"Clientes"}  sx={{
+              color: isActiveRoute('/dashboard/selecteds') ? '#EC6724' : 'inherit'
+            }}/>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => { navigate('/products')}}>
             <ListItemIcon>
               <GridViewIcon />
             </ListItemIcon>

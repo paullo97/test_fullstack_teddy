@@ -5,13 +5,15 @@ import SideBar from "../sidebar";
 import './index.css';
 import { useSelector } from "react-redux";
 import { RootState } from '../../store';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AppBarComponent = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const nameUser = useSelector((state: RootState) => state.name.name )
+  const isActiveRoute = (path: string) => location.pathname === path;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -47,12 +49,12 @@ const AppBarComponent = () => {
             />
 
             <Box className="nav-links" >
-              <Typography variant="body1" color="secondary" style={{ textDecoration: 'underline' }} onClick={() => {
+              <Typography variant="body1" color={isActiveRoute('/dashboard') ? "secondary" : "inherit" } style={{ textDecoration: 'underline' }} onClick={() => {
                 navigate('/dashboard')
               }}>
                 Clientes
               </Typography>
-              <Typography variant="body1" className="selected-clients" onClick={() => {
+              <Typography variant="body1" color={isActiveRoute('/dashboard/selecteds') ? "secondary" : "inherit" } className="selected-clients" onClick={() => {
                 navigate('/dashboard/selecteds')
               }}>
                 Clientes selecionados
